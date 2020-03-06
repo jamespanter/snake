@@ -39,16 +39,18 @@ const moveSnake = () => {
   ctx.fillRect(snakeX, snakeY, 20, 20);
   if (direction == 38) {
     moveDirection = snakeY;
-    console.log("up");
+    snakeY -= dy;
   } else if (direction == 40) {
     moveDirection = snakeY;
+    snakeY += dy;
   } else if (direction == 37) {
     moveDirection = snakeX;
+    snakeX -= dx;
   } else if (direction == 39) {
     moveDirection = snakeX;
+    snakeX += dx;
   }
-  snakeX += dx;
-  snakeY += dy;
+
   //   console.log("snakeX = " + snakeX, "snakeY = " + snakeY);
 };
 
@@ -59,26 +61,15 @@ document.getElementById("create-node").addEventListener("click", createNode);
 window.addEventListener("keydown", e => {
   if (e.keyCode == "38") {
     direction = 38;
-    console.log(direction);
     // up arrow
   } else if (e.keyCode == "40") {
     direction = 40;
-    console.log(direction);
-
     // down arrow
   } else if (e.keyCode == "37") {
     direction = 37;
-    console.log(direction);
-
     // left arrow
   } else if (e.keyCode == "39") {
     direction = 39;
-    console.log(direction);
-
     // right arrow
   }
 });
-
-function checkKey(e) {
-  e = e || window.event;
-}
