@@ -4,6 +4,7 @@
   border: 0;
   margin: 0;
   box-sizing: border-box;
+  color: white;
 }
 
 body {
@@ -14,6 +15,10 @@ body {
   width: 100vw;
 }
 
+h1 {
+  text-transform: uppercase;
+  font-size: 60px;
+}
 #snake-container {
   background-color: whitesmoke;
   height: 500px;
@@ -24,8 +29,19 @@ button {
   font-size: 32px;
   padding: 25px;
   margin: 10px;
+  color: black;
 
   &:hover {
     background-color: grey;
+  }
+}
+#score-panel {
+  @include flex-column-center;
+  border: solid 2px white;
+  padding: 10px;
+  font-size: 32px;
+
+  #output {
+    font-size: 32px;
   }
 }

@@ -3,6 +3,7 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  color: white;
 }
 
 body {
@@ -25,6 +26,11 @@ body {
   width: 100vw;
 }
 
+h1 {
+  text-transform: uppercase;
+  font-size: 60px;
+}
+
 #snake-container {
   background-color: whitesmoke;
   height: 500px;
@@ -35,9 +41,33 @@ button {
   font-size: 32px;
   padding: 25px;
   margin: 10px;
+  color: black;
 }
 
 button:hover {
   background-color: grey;
+}
+
+#score-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px white;
+  padding: 10px;
+  font-size: 32px;
+}
+
+#score-panel #output {
+  font-size: 32px;
 }
 /*# sourceMappingURL=snake.css.map */
