@@ -1,11 +1,12 @@
 const canvas = document.getElementById("snake-container"),
   ctx = canvas.getContext("2d");
-let snakeX = 100,
-  snakeY = 200;
-const arrayOfSnakeXCoords = [snakeX];
-const arrayOfNodeYCoords = [snakeY];
-let dx = 1;
-let dy = 1;
+let snakeX, snakeY;
+let score = 0;
+let arrayOfSnakeXCoords = [];
+let arrayOfSnakeYCoords = [];
+let arrayOfNodeXCoords = [];
+let arrayOfNodeYCoords = [];
+let d = 1;
 let direction;
 
 const newGame = () => {
@@ -14,7 +15,7 @@ const newGame = () => {
   direction = 0;
   clearCanvas();
   createNode();
-  setInterval(moveSnake, 10);
+  setInterval(moveSnake, 50);
 };
 
 const clearCanvas = () => {
@@ -25,53 +26,84 @@ const createNode = () => {
   let x = Math.floor(Math.random() * canvas.width),
     y = Math.floor(Math.random() * canvas.height);
   if (x > canvas.width) {
-    x = canvas.width-20;
+    x = canvas.width - 20;
   }
   if (y > canvas.height) {
     y = canvas.height - 20;
   }
-  createNodeOnCanvas(x, y);
-};
-
-const createNodeOnCanvas = (x, y) => {
-  //   arrayOfSnakeXCoords.push(x);
-  //   arrayOfNodeYCoords.push(y);
+  arrayOfNodeXCoords.push(x);
+  arrayOfNodeYCoords.push(y);
+  // console.log("Node X: " + arrayOfNodeXCoords, "Node Y: " + arrayOfNodeYCoords);
   ctx.fillStyle = "black";
   ctx.fillRect(x, y, 5, 5);
 };
-
+const resetScore = () => {
+  score = 0;
+  document.getElementById("output").innerHTML = score;
+};
 const moveSnake = () => {
-  console.log(arrayOfSnakeXCoords, arrayOfNodeYCoords);
+  if (snakeX == canvas.width || snakeY == canvas.height) {
+    newGame();
+    resetScore();
+  } else if (
+    snakeX == canvas.width - canvas.width ||
+    snakeY == canvas.height - canvas.height
+  ) {
+    newGame();
+    resetScore();
+  }
+  console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
   //clear end of snake
-  ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfNodeYCoords[0], 20, 20);
+  ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfSnakeYCoords[0], 20, 20);
   //remove end of snake from arrays
-  arrayOfNodeYCoords.splice(0, 1);
+  arrayOfSnakeYCoords.splice(0, 1);
   arrayOfSnakeXCoords.splice(0, 1);
   ctx.fillStyle = "red";
   //create head of snake
   ctx.fillRect(snakeX, snakeY, 20, 20);
   //add head of snake to array
   arrayOfSnakeXCoords.push(snakeX);
-  arrayOfNodeYCoords.push(snakeY);
+  arrayOfSnakeYCoords.push(snakeY);
   switch (direction) {
     // left
     case 37:
-      snakeX -= dx;
+      snakeX -= d;
       break;
-      // up
+    // up
     case 38:
-      snakeY -= dy;
+      snakeY -= d;
       break;
-      // right
+    // right
     case 39:
-      snakeX += dx;
+      snakeX += d;
       break;
-      // down
+    // down
     case 40:
-      snakeY += dy;
+      snakeY += d;
       break;
   }
-  //   console.log("snakeX = " + snakeX, "snakeY = " + snakeY);
+  checkWin(snakeX, snakeY);
+};
+
+const checkWin = (snakeX, snakeY) => {
+  console.log(
+    "x difference: " + snakeX
+    // // arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1],
+    // "y difference: " +
+    // snakeY -
+    // arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1]
+  );
+  if (
+    snakeX == arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1] &&
+    snakeY == arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1]
+  ) {
+    addScore();
+  }
+};
+const addScore = () => {
+  score++;
+  document.getElementById("output").innerHTML = score;
+  createNode();
 };
 
 newGame();
