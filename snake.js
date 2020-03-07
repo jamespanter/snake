@@ -8,6 +8,7 @@ let arrayOfNodeXCoords = [];
 let arrayOfNodeYCoords = [];
 let d = 1;
 let direction;
+
 const newGame = () => {
   resetScore();
   snakeX = 200;
@@ -16,8 +17,6 @@ const newGame = () => {
   clearCanvas();
   createNode();
   moveSnake();
-  // setInterval(moveSnake, 50);
-  // clearInterval(interval);
 };
 
 const clearCanvas = () => {
@@ -58,16 +57,12 @@ const checkLose = () => {
 
 const moveSnake = () => {
   checkLose();
-  console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
-  //clear end of snake
+  // console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
   ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfSnakeYCoords[0], 20, 20);
-  //remove end of snake from arrays
   arrayOfSnakeYCoords.splice(0, 1);
   arrayOfSnakeXCoords.splice(0, 1);
   ctx.fillStyle = "red";
-  //create head of snake
   ctx.fillRect(snakeX, snakeY, 20, 20);
-  //add head of snake to array
   arrayOfSnakeXCoords.push(snakeX);
   arrayOfSnakeYCoords.push(snakeY);
   switch (direction) {
@@ -111,8 +106,10 @@ const checkWin = (snakeX, snakeY) => {
   ) {
     addScore();
     createNode();
+    // extendSnake();
   }
 };
+// const extendSnake = (s) => {};
 
 const addScore = () => {
   score++;
