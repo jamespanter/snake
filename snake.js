@@ -95,10 +95,20 @@ const moveSnake = () => {
 const checkWin = (snakeX, snakeY) => {
   let nodeX = arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1];
   let nodeY = arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1];
-  let distX = Math.abs(snakeX - nodeX);
-  let distY = Math.abs(snakeY - nodeY);
-  console.log(distX, distY);
-  if (distX < 20 && distY < 20) {
+  let snakeXStart = snakeX;
+  let snakeXEnd = snakeX + 20;
+  let snakeYStart = snakeY;
+  let snakeYEnd = snakeY + 20;
+  let nodeXStart = nodeX;
+  let nodeXEnd = nodeX + 5;
+  let nodeYStart = nodeY;
+  let nodeYEnd = nodeY + 5;
+  if (
+    nodeXStart >= snakeXStart &&
+    nodeXEnd <= snakeXEnd &&
+    nodeYStart >= snakeYStart &&
+    nodeYEnd <= snakeYEnd
+  ) {
     addScore();
     createNode();
   }
