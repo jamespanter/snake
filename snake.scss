@@ -19,7 +19,9 @@ h1 {
   text-transform: uppercase;
   font-size: 60px;
 }
+
 #snake-container {
+  border: solid 10px brown;
   background-color: whitesmoke;
   height: 500px;
   width: 800px;
@@ -35,13 +37,19 @@ button {
     background-color: grey;
   }
 }
-#score-panel {
+#game-panel {
   @include flex-column-center;
-  border: solid 2px white;
-  padding: 10px;
-  font-size: 32px;
+  flex-direction: row;
 
-  #output {
+  #score-panel {
+    @include flex-column-center;
+    border: solid 2px white;
+    text-transform: uppercase;
+    padding: 10px;
     font-size: 32px;
+
+    #output {
+      font-size: 32px;
+    }
   }
 }

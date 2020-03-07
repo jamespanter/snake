@@ -8,14 +8,16 @@ let arrayOfNodeXCoords = [];
 let arrayOfNodeYCoords = [];
 let d = 1;
 let direction;
-
 const newGame = () => {
+  resetScore();
   snakeX = 200;
   snakeY = 250;
   direction = 0;
   clearCanvas();
   createNode();
-  setInterval(moveSnake, 50);
+  moveSnake();
+  // setInterval(moveSnake, 50);
+  // clearInterval(interval);
 };
 
 const clearCanvas = () => {
@@ -37,21 +39,25 @@ const createNode = () => {
   ctx.fillStyle = "black";
   ctx.fillRect(x, y, 5, 5);
 };
+
 const resetScore = () => {
   score = 0;
   document.getElementById("output").innerHTML = score;
 };
-const moveSnake = () => {
+
+const checkLose = () => {
   if (snakeX == canvas.width || snakeY == canvas.height) {
     newGame();
-    resetScore();
   } else if (
     snakeX == canvas.width - canvas.width ||
     snakeY == canvas.height - canvas.height
   ) {
     newGame();
-    resetScore();
   }
+};
+
+const moveSnake = () => {
+  checkLose();
   console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
   //clear end of snake
   ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfSnakeYCoords[0], 20, 20);
@@ -83,31 +89,27 @@ const moveSnake = () => {
       break;
   }
   checkWin(snakeX, snakeY);
+  requestAnimationFrame(moveSnake);
 };
 
 const checkWin = (snakeX, snakeY) => {
-  console.log(
-    "x difference: " + snakeX
-    // // arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1],
-    // "y difference: " +
-    // snakeY -
-    // arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1]
-  );
-  if (
-    snakeX == arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1] &&
-    snakeY == arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1]
-  ) {
+  let nodeX = arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1];
+  let nodeY = arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1];
+  let distX = Math.abs(snakeX - nodeX);
+  let distY = Math.abs(snakeY - nodeY);
+  console.log(distX, distY);
+  if (distX < 20 && distY < 20) {
     addScore();
+    createNode();
   }
 };
+
 const addScore = () => {
   score++;
   document.getElementById("output").innerHTML = score;
-  createNode();
 };
 
 newGame();
 
 document.getElementById("new-game-button").addEventListener("click", newGame);
-document.getElementById("create-node").addEventListener("click", createNode);
 window.addEventListener("keydown", e => (direction = e.keyCode));
