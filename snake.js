@@ -14,7 +14,7 @@ const newGame = () => {
   direction = 0;
   clearCanvas();
   createNode();
-  setInterval(moveSnake, 30);
+  setInterval(moveSnake, 10);
 };
 
 const clearCanvas = () => {
@@ -37,7 +37,7 @@ const createNodeOnCanvas = (x, y) => {
   //   arrayOfSnakeXCoords.push(x);
   //   arrayOfNodeYCoords.push(y);
   ctx.fillStyle = "black";
-  ctx.fillRect(x, y, 20, 20);
+  ctx.fillRect(x, y, 5, 5);
 };
 
 const moveSnake = () => {
@@ -58,15 +58,15 @@ const moveSnake = () => {
     case 37:
       snakeX -= dx;
       break;
-    // up
+      // up
     case 38:
       snakeY -= dy;
       break;
-    // right
+      // right
     case 39:
       snakeX += dx;
       break;
-    // down
+      // down
     case 40:
       snakeY += dy;
       break;
