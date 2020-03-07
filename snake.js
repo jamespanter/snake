@@ -24,11 +24,11 @@ const clearCanvas = () => {
 const createNode = () => {
   let x = Math.floor(Math.random() * canvas.width),
     y = Math.floor(Math.random() * canvas.height);
-  if (x > 780) {
-    x = 780;
+  if (x > canvas.width) {
+    x = canvas.width-20;
   }
-  if (y > 480) {
-    y = 480;
+  if (y > canvas.height) {
+    y = canvas.height - 20;
   }
   createNodeOnCanvas(x, y);
 };
