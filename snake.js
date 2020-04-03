@@ -106,10 +106,8 @@ const checkWin = (snakeX, snakeY) => {
   ) {
     addScore();
     createNode();
-    // extendSnake();
   }
 };
-// const extendSnake = (s) => {};
 
 const addScore = () => {
   score++;
@@ -119,4 +117,4 @@ const addScore = () => {
 newGame();
 
 document.getElementById("new-game-button").addEventListener("click", newGame);
-window.addEventListener("keydown", e => (direction = e.keyCode));
+window.addEventListener("keydown", (e) => (direction = e.keyCode));
