@@ -1,9 +1,14 @@
 * {
+  font-family: "Raleway", sans-serif;
   border: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: whitesmoke;
+}
+
+*:focus {
+  outline: 0;
 }
 
 body {
@@ -21,7 +26,6 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
 }
@@ -38,19 +42,27 @@ h1 {
 #snake-container {
   border: solid 10px brown;
   background-color: whitesmoke;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(90, 88, 88, 0.2)), to(rgba(63, 62, 62, 0.2))), url(./background.jpg);
+  background: linear-gradient(rgba(90, 88, 88, 0.2), rgba(63, 62, 62, 0.2)), url(./background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 500px;
+  border-radius: 30px;
   width: 800px;
 }
 
 button {
-  font-size: 32px;
+  font-size: 48px;
   padding: 25px;
   margin: 10px;
+  font-weight: 600;
   color: black;
+  background-color: #67eb67;
+  border-radius: 30px;
 }
 
 button:hover {
-  background-color: grey;
+  background-color: rgba(103, 235, 103, 0.644);
 }
 
 #game-panel {
@@ -85,14 +97,18 @@ button:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
   border: solid 2px white;
-  text-transform: uppercase;
-  padding: 10px;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 30px;
   font-size: 32px;
 }
 
 #game-panel #score-panel #output {
-  font-size: 32px;
+  font-size: 48px;
+  color: #67eb67;
 }
 
 @media only screen and (max-width: 900px) {

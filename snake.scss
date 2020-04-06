@@ -1,16 +1,19 @@
 @import "mixins.scss";
 
 * {
+  font-family: "Raleway", sans-serif;
   border: 0;
   margin: 0;
   box-sizing: border-box;
   color: whitesmoke;
+  &:focus {
+    outline: 0;
+  }
 }
 
 body {
   @include flex-column-center;
   background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
 
@@ -27,18 +30,26 @@ h1 {
 #snake-container {
   border: solid 10px brown;
   background-color: whitesmoke;
+  background: linear-gradient(rgba(90, 88, 88, 0.2), rgba(63, 62, 62, 0.2)),
+    url(./background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 500px;
+  border-radius: 30px;
   width: 800px;
 }
 
 button {
-  font-size: 32px;
+  font-size: 48px;
   padding: 25px;
   margin: 10px;
+  font-weight: 600;
   color: black;
+  background-color: rgb(103, 235, 103);
+  border-radius: 30px;
 
   &:hover {
-    background-color: grey;
+    background-color: rgba(103, 235, 103, 0.644);
   }
 }
 
@@ -48,13 +59,16 @@ button {
 
   #score-panel {
     @include flex-column-center;
+    flex-direction: row;
     border: solid 2px white;
-    text-transform: uppercase;
-    padding: 10px;
+    padding: 25px;
+    margin: 10px;
+    border-radius: 30px;
     font-size: 32px;
 
     #output {
-      font-size: 32px;
+      font-size: 48px;
+      color: rgb(103, 235, 103);
     }
   }
 }
