@@ -13,6 +13,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
+
+  #modal {
+    display: none;
+  }
 }
 
 h1 {
@@ -37,6 +41,7 @@ button {
     background-color: grey;
   }
 }
+
 #game-panel {
   @include flex-column-center;
   flex-direction: row;
@@ -50,6 +55,36 @@ button {
 
     #output {
       font-size: 32px;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    h1,
+    #snake-container,
+    button,
+    #game-panel #score-panel {
+      display: none;
+    }
+
+    #modal {
+      @include flex-column-center;
+      z-index: 10;
+      font-size: 24px;
+      position: absolute;
+      top: 25%;
+      left: 5%;
+      height: 50%;
+      width: 90%;
+      opacity: 0.8;
+      padding: 0 10%;
+      text-align: center;
+      border-radius: 15px;
+
+      h2 {
+        margin-bottom: 10px;
+      }
     }
   }
 }
