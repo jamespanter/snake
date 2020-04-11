@@ -35,7 +35,7 @@ const createNode = () => {
   arrayOfNodeXCoords.push(x);
   arrayOfNodeYCoords.push(y);
   // console.log("Node X: " + arrayOfNodeXCoords, "Node Y: " + arrayOfNodeYCoords);
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "green";
   ctx.fillRect(x, y, 5, 5);
 };
 
