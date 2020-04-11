@@ -107,7 +107,7 @@ const checkWin = (snakeX, snakeY) => {
     nodeYStart >= snakeYStart &&
     nodeYEnd <= snakeYEnd
   ) {
-    d = d + 0.2;
+    d = d + 0.1;
     addScore();
     createNode();
   } else {
