@@ -35,7 +35,7 @@ const createNode = () => {
   arrayOfNodeXCoords.push(x);
   arrayOfNodeYCoords.push(y);
   // console.log("Node X: " + arrayOfNodeXCoords, "Node Y: " + arrayOfNodeYCoords);
-  ctx.fillStyle = "green";
+  ctx.fillStyle = "yellow";
   ctx.fillRect(x, y, 5, 5);
 };
 
@@ -61,7 +61,7 @@ const moveSnake = () => {
   ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfSnakeYCoords[0], 20, 20);
   arrayOfSnakeYCoords.splice(0, 1);
   arrayOfSnakeXCoords.splice(0, 1);
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "rgb(111, 206, 111)";
   ctx.fillRect(snakeX, snakeY, 20, 20);
   arrayOfSnakeXCoords.push(snakeX);
   arrayOfSnakeYCoords.push(snakeY);
