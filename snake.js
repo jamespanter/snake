@@ -13,10 +13,6 @@ let snakeX,
 
 const newGame = () => {
   cancelAnimationFrame(id);
-  arrayOfSnakeXCoords = [];
-  arrayOfSnakeYCoords = [];
-  arrayOfNodeXCoords = [];
-  arrayOfNodeYCoords = [];
   resetScore();
   resetSnakePositionAndDirection();
   clearCanvas();
@@ -46,7 +42,7 @@ const createNode = () => {
   arrayOfNodeXCoords.push(x);
   arrayOfNodeYCoords.push(y);
   ctx.fillStyle = "yellow";
-  ctx.fillRect(x, y, 15, 15);
+  ctx.fillRect(x, y, 10, 10);
 };
 
 const resetScore = () => {
@@ -55,12 +51,9 @@ const resetScore = () => {
 };
 
 const checkLose = () => {
-  if (snakeX == canvas.width || snakeY == canvas.height) {
+  if (snakeX > 800 || snakeY > 500) {
     newGame();
-  } else if (
-    snakeX == canvas.width - canvas.width ||
-    snakeY == canvas.height - canvas.height
-  ) {
+  } else if (snakeX < 0 || snakeY < 0) {
     newGame();
   }
 };
@@ -105,9 +98,9 @@ const checkWin = (snakeX, snakeY) => {
   let snakeYStart = snakeY;
   let snakeYEnd = snakeY + 20;
   let nodeXStart = nodeX;
-  let nodeXEnd = nodeX + 15;
+  let nodeXEnd = nodeX + 10;
   let nodeYStart = nodeY;
-  let nodeYEnd = nodeY + 15;
+  let nodeYEnd = nodeY + 10;
   if (
     nodeXStart >= snakeXStart &&
     nodeXEnd <= snakeXEnd &&
@@ -122,8 +115,8 @@ const checkWin = (snakeX, snakeY) => {
     ctx.fillRect(
       arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1],
       arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1],
-      15,
-      15
+      10,
+      10
     );
   }
 };
