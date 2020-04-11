@@ -45,7 +45,7 @@ h1 {
 
 #snake-container {
   border: solid 10px whitesmoke;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: black;
   height: 500px;
   border-radius: 30px;
   margin-bottom: 20px;
@@ -154,6 +154,7 @@ h2 {
     padding: 0 10%;
     text-align: center;
     border-radius: 15px;
+    background-color: rgba(245, 245, 245, 0.2);
   }
   body #modal h2 {
     margin-bottom: 10px;

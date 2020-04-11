@@ -1,22 +1,27 @@
 const canvas = document.getElementById("snake-container"),
   ctx = canvas.getContext("2d");
-let snakeX, snakeY;
-let score = 0;
-let arrayOfSnakeXCoords = [];
-let arrayOfSnakeYCoords = [];
-let arrayOfNodeXCoords = [];
-let arrayOfNodeYCoords = [];
-let d = 1;
-let direction;
+let snakeX,
+  snakeY,
+  direction,
+  score = 0,
+  arrayOfSnakeXCoords = [],
+  arrayOfSnakeYCoords = [],
+  arrayOfNodeXCoords = [],
+  arrayOfNodeYCoords = [],
+  d = 1;
 
 const newGame = () => {
   resetScore();
-  snakeX = 200;
-  snakeY = 250;
-  direction = 0;
+  resetSnakePositionAndDirection();
   clearCanvas();
   createNode();
   moveSnake();
+};
+
+const resetSnakePositionAndDirection = () => {
+  snakeX = 200;
+  snakeY = 250;
+  direction = 0;
 };
 
 const clearCanvas = () => {
@@ -26,17 +31,17 @@ const clearCanvas = () => {
 const createNode = () => {
   let x = Math.floor(Math.random() * canvas.width),
     y = Math.floor(Math.random() * canvas.height);
-  if (x > canvas.width) {
-    x = canvas.width - 20;
+  if (x > canvas.width - 35) {
+    x = canvas.width - 35;
   }
-  if (y > canvas.height) {
-    y = canvas.height - 20;
+  if (y > canvas.height - 35) {
+    y = canvas.height - 35;
   }
   arrayOfNodeXCoords.push(x);
   arrayOfNodeYCoords.push(y);
   // console.log("Node X: " + arrayOfNodeXCoords, "Node Y: " + arrayOfNodeYCoords);
   ctx.fillStyle = "yellow";
-  ctx.fillRect(x, y, 5, 5);
+  ctx.fillRect(x, y, 15, 15);
 };
 
 const resetScore = () => {
@@ -57,8 +62,8 @@ const checkLose = () => {
 
 const moveSnake = () => {
   checkLose();
-  // console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
-  ctx.clearRect(arrayOfSnakeXCoords[0], arrayOfSnakeYCoords[0], 20, 20);
+  console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
+  ctx.clearRect(arrayOfSnakeXCoords[0] - 1, arrayOfSnakeYCoords[0] - 1, 21, 21);
   arrayOfSnakeYCoords.splice(0, 1);
   arrayOfSnakeXCoords.splice(0, 1);
   ctx.fillStyle = "rgb(111, 206, 111)";
@@ -95,9 +100,9 @@ const checkWin = (snakeX, snakeY) => {
   let snakeYStart = snakeY;
   let snakeYEnd = snakeY + 20;
   let nodeXStart = nodeX;
-  let nodeXEnd = nodeX + 5;
+  let nodeXEnd = nodeX + 15;
   let nodeYStart = nodeY;
-  let nodeYEnd = nodeY + 5;
+  let nodeYEnd = nodeY + 15;
   if (
     nodeXStart >= snakeXStart &&
     nodeXEnd <= snakeXEnd &&
@@ -106,6 +111,14 @@ const checkWin = (snakeX, snakeY) => {
   ) {
     addScore();
     createNode();
+  } else {
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(
+      arrayOfNodeXCoords[arrayOfNodeXCoords.length - 1],
+      arrayOfNodeYCoords[arrayOfNodeYCoords.length - 1],
+      15,
+      15
+    );
   }
 };
 
