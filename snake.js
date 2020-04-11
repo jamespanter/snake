@@ -2,15 +2,21 @@ const canvas = document.getElementById("snake-container"),
   ctx = canvas.getContext("2d");
 let snakeX,
   snakeY,
+  id,
   direction,
   score = 0,
   arrayOfSnakeXCoords = [],
   arrayOfSnakeYCoords = [],
   arrayOfNodeXCoords = [],
   arrayOfNodeYCoords = [],
-  d = 1;
+  d = 1.5;
 
 const newGame = () => {
+  cancelAnimationFrame(id);
+  arrayOfSnakeXCoords = [];
+  arrayOfSnakeYCoords = [];
+  arrayOfNodeXCoords = [];
+  arrayOfNodeYCoords = [];
   resetScore();
   resetSnakePositionAndDirection();
   clearCanvas();
@@ -39,7 +45,6 @@ const createNode = () => {
   }
   arrayOfNodeXCoords.push(x);
   arrayOfNodeYCoords.push(y);
-  // console.log("Node X: " + arrayOfNodeXCoords, "Node Y: " + arrayOfNodeYCoords);
   ctx.fillStyle = "yellow";
   ctx.fillRect(x, y, 15, 15);
 };
@@ -62,8 +67,13 @@ const checkLose = () => {
 
 const moveSnake = () => {
   checkLose();
-  console.log("x: " + arrayOfSnakeXCoords, "y: " + arrayOfSnakeYCoords);
-  ctx.clearRect(arrayOfSnakeXCoords[0] - 1, arrayOfSnakeYCoords[0] - 1, 21, 21);
+  checkWin(snakeX, snakeY);
+  ctx.clearRect(
+    arrayOfSnakeXCoords[0] - 1,
+    arrayOfSnakeYCoords[0] - 1,
+    20 + d,
+    20 + d
+  );
   arrayOfSnakeYCoords.splice(0, 1);
   arrayOfSnakeXCoords.splice(0, 1);
   ctx.fillStyle = "rgb(111, 206, 111)";
@@ -71,25 +81,20 @@ const moveSnake = () => {
   arrayOfSnakeXCoords.push(snakeX);
   arrayOfSnakeYCoords.push(snakeY);
   switch (direction) {
-    // left
     case 37:
       snakeX -= d;
       break;
-    // up
     case 38:
       snakeY -= d;
       break;
-    // right
     case 39:
       snakeX += d;
       break;
-    // down
     case 40:
       snakeY += d;
       break;
   }
-  checkWin(snakeX, snakeY);
-  requestAnimationFrame(moveSnake);
+  id = requestAnimationFrame(moveSnake);
 };
 
 const checkWin = (snakeX, snakeY) => {
@@ -109,6 +114,7 @@ const checkWin = (snakeX, snakeY) => {
     nodeYStart >= snakeYStart &&
     nodeYEnd <= snakeYEnd
   ) {
+    d = d + 0.2;
     addScore();
     createNode();
   } else {
