@@ -12,6 +12,7 @@ let snakeX,
   d = 1.5;
 
 const newGame = () => {
+  d = 1.5;
   cancelAnimationFrame(id);
   resetScore();
   resetSnakePositionAndDirection();
